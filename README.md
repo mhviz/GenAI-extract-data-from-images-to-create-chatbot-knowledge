@@ -23,24 +23,19 @@ The solution has been tested with Python 10 and utilizes image data of glasses.
 
    ```bash
    pip install -r requirements.txt
-Tested with python 10. Dan menggunakan data gambar kacamata.
 
-Requirment:
-LLM model with vision --> (Azure OpenAI gpt-4o)
-Embedding model --> (Azure OpenAI gpt-4o)
-Vector Database --> (Azure Search AI)
+2. **Configure Environment**
 
-Gambar flow [images/flow.png]
+   Adjust the .env file according to the resources you have available.
 
-Pertama, install requierment.txt
-pip install requirments.txt
+3. **Run the Notebook**
 
-Kedua, sesuaikan env file sesuai resource yang anda punya.
+   Execute the notebook.ipynb script using the sample data in the data folder. This will run the entire flow from data extraction to chatbot simulation. You can also try other use cases as needed.
 
-Kedua, jalankan script notebook.ipynb menggunakan sample data pada folder data untuk menjalankan flow secara end-to-end dari extract data sampai simulasi chatbot. Anda bisa mencoba data usecase lain sesuai kebutuhan.
+4. **Simulate Using Streamlit Frontend**
 
-Ketiga, jalankan simulasi menggunakan frontend streamlit. Ada 2 fitur:
-1. Extract Data, untuk simulasi dari gambar menjadi informasi berbentuk json
-gambar [images/Extract Data.png]
-2. Chatbot, tanya jawab berdasarkan knowledge yang sudah dibuat pada script notebook.ipynb
-gambar [images/chatbot.png]
+   Launch the simulation with the Streamlit frontend, which offers two features:
+
+   ***Extract Data: Simulate converting images into JSON-formatted information***
+   
+   ***Chatbot: Engage in Q&A based on the knowledge created in notebook.ipynb***
