@@ -23,8 +23,6 @@ The solution has been tested with Python 10 and utilizes image data of glasses.
    ```bash
    pip install -r requirements.txt
 
-   
-
 2. **Configure Environment**
 
    Adjust the .env file according to the resources you have available.
@@ -40,7 +38,7 @@ The solution has been tested with Python 10 and utilizes image data of glasses.
       ```bash
       streamlit run app.py
    
-### Extract Data 
-   ![Extract Data](images/ExtractData.png)
-### Chatbot 
-   ![Chatbot](images/chatbot.png)
+#### Extract Data 
+   !![Extract Data](images/ExtractData.png)
+#### Chatbot 
+   !![Chatbot](images/chatbot.png)
