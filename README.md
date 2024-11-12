@@ -2,7 +2,7 @@
 
 ## Overview
 This project focuses on extracting data from images using a large language model (LLM) with vision capabilities to generate knowledge for chatbots.
-The solution has been tested with Python 10 and utilizes image data of glasses.
+The solution has been tested with Python 3.10 and utilizes image data of glasses.
 
 ## Requirements
 
