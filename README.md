@@ -1,4 +1,4 @@
-# GenAI-extract-data-from-images-to-create-chatbot-knowledge
+# GenAI: Extract data from images to create chatbot knowledge
 This project involves extracting data from images using a large language model (LLM) with vision capabilities to create knowledge for chatbots.
 
 ## Overview
@@ -39,6 +39,6 @@ The solution has been tested with Python 10 and utilizes image data of glasses.
    ```bash
    streamlit run app.py
 
-![Extract Data](images/flow.png)
+![Extract Data](images/ExtracData.png)
 
-![Chatbot](images/flow.png)
+![Chatbot](images/chatbot.png)
