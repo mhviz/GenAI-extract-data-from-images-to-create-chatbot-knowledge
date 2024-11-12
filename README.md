@@ -39,6 +39,6 @@ The solution has been tested with Python 10 and utilizes image data of glasses.
    ```bash
    streamlit run app.py
 
-![Flow Diagram](images/flow.png)
+![Extract Data](images/flow.png)
 
-![Flow Diagram](images/flow.png)
+![Chatbot](images/flow.png)
