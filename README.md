@@ -31,7 +31,7 @@ The solution has been tested with Python 10 and utilizes image data of glasses.
 
    Execute the notebook.ipynb script using the sample data in the data folder. This will run the entire flow from data extraction to chatbot simulation. You can also try other use cases as needed.
 
-4. **Simulate Using Streamlit Frontend**
+4. **Simulate Using Streamlit**
 
    Launch the simulation with the Streamlit frontend, which offers two features: Extract Data and Chatbot.
 
@@ -39,6 +39,6 @@ The solution has been tested with Python 10 and utilizes image data of glasses.
       streamlit run app.py
    
 #### Extract Data 
-   !![Extract Data](images/ExtractData.png)
+   ![Extract Data](images/ExtractData.png)
 #### Chatbot 
-   !![Chatbot](images/chatbot.png)
+   ![Chatbot](images/chatbot.png)
