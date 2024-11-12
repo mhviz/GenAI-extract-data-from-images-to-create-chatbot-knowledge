@@ -34,8 +34,11 @@ The solution has been tested with Python 10 and utilizes image data of glasses.
 
 4. **Simulate Using Streamlit Frontend**
 
-   Launch the simulation with the Streamlit frontend, which offers two features:
+   Launch the simulation with the Streamlit frontend, which offers two features: Extract Data and Chatbot.
 
-   ***Extract Data: Simulate converting images into JSON-formatted information***
-   
-   ***Chatbot: Engage in Q&A based on the knowledge created in notebook.ipynb***
+   ```bash
+   streamlit run app.py
+
+   ![Flow Diagram](images/flow.png)
+
+   ![Flow Diagram](images/flow.png)
