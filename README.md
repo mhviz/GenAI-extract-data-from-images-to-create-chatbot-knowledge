@@ -6,8 +6,8 @@ The solution has been tested with Python 3.10 and utilizes image data of glasses
 
 ## Requirements
 
-- **LLM Model with Vision**: Azure OpenAI GPT-4o
-- **Embedding Model**: Azure OpenAI GPT-4o
+- **LLM Model with Vision**: Azure OpenAI: gpt-4o
+- **Embedding Model**: Azure OpenAI: text-embedding-3-large
 - **Vector Database**: Azure Search AI
 
 ## Flow Diagram
