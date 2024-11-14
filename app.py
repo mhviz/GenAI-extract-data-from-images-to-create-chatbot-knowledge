@@ -42,16 +42,6 @@ index_client = SearchIndexClient(endpoint=vdb_endpoint, credential=vdb_credentia
 search_client = SearchClient(endpoint=vdb_endpoint, index_name=vdb_index_name, credential=vdb_credential)
 ######################
 
-st.set_page_config(
-    page_title="SunglassesApp",
-    #page_icon="💬",
-    #layout="centered"
-)
-
-st.title("Welcome to the Sunglasses App")
-
-#######################
-
 ## Extract Data Preparation
 
 # Function to encode an image for processing by LLM
@@ -200,62 +190,76 @@ def rag_qa(question):
     response = requests.post(azure_openai_chat_endpoint, headers=headers, json=payload).json()
     return response
 
-###############################
+#######################
 
-# Sidebar menu
-menu = st.radio('Menu', ['Extract Data','Chatbot'])
+st.set_page_config(
+    page_title="SunglassesApp",
+    #page_icon="💬",
+    #layout="centered"
+)
 
-if menu == 'Extract Data':
+st.title("Welcome to the Sunglasses App")
 
-    left_container, right_container = st.columns(2)
-                
-    with left_container:
-        # upload and encode data
-        uploaded_file = st.file_uploader("Upload Image (single image)", type=["jpg", "jpeg", "png"])
-        if uploaded_file is not None:            
-            if uploaded_file.type.lower().split('/')[1] != 'pdf':
-                Images = Image.open(uploaded_file)
-                st.image(Images, caption=None, use_column_width=True)
-                encode_data = encode_image(Images)
+#######################
 
-            if encode_data:
-                with st.spinner("Extract Data..."):
-                    response = extract_image(prompt, encode_data, azure_openai_key, azure_openai_chat_endpoint)
-                    result = parse_result(response)
-                    with right_container:
-                        st.success("Extract Data Success")
-                        tab1, tab2 = st.tabs(["JSON", "TABLE"])
-                        with tab1:
-                            st.json(result)
-                        with tab2:
-                            df_result = pd.json_normalize(result)
-                            st.table(df_result.T)
+def main():
+    # Sidebar menu
+    menu = st.radio('Menu', ['Extract Data','Chatbot'])
+    
+    if menu == 'Extract Data':
+    
+        left_container, right_container = st.columns(2)
                     
-            else:
-                with right_container:
-                    st.write("Please Check Your Data")        
+        with left_container:
+            # upload and encode data
+            uploaded_file = st.file_uploader("Upload Image (single image)", type=["jpg", "jpeg", "png"])
+            if uploaded_file is not None:            
+                if uploaded_file.type.lower().split('/')[1] != 'pdf':
+                    Images = Image.open(uploaded_file)
+                    st.image(Images, caption=None, use_column_width=True)
+                    encode_data = encode_image(Images)
+    
+                if encode_data:
+                    with st.spinner("Extract Data..."):
+                        response = extract_image(prompt, encode_data, azure_openai_key, azure_openai_chat_endpoint)
+                        result = parse_result(response)
+                        with right_container:
+                            st.success("Extract Data Success")
+                            tab1, tab2 = st.tabs(["JSON", "TABLE"])
+                            with tab1:
+                                st.json(result)
+                            with tab2:
+                                df_result = pd.json_normalize(result)
+                                st.table(df_result.T)
+                        
+                else:
+                    with right_container:
+                        st.write("Please Check Your Data")        
+    
+    elif menu == 'Chatbot':
+        if st.button("Reset Chat"):
+            st.session_state.messages = []
+    
+        if "messages" not in st.session_state:
+            st.session_state.messages = []
+    
+        for message in st.session_state.messages:
+            with st.chat_message(message["role"]):
+                st.markdown(message["content"])
+    
+        if q := st.chat_input("Ask Question Here ..."):
+            st.session_state.messages.append({"role": "user", "content": q})
+            with st.chat_message("user"):
+                st.markdown(q)
+    
+    
+            with st.chat_message("assistant"):
+                with st.spinner("Generating Answer..."):        
+                    response = rag_qa(q)
+                answer = response['choices'][0]['message']['content']
+                st.markdown(answer)
+    
+            st.session_state.messages.append({"role": "assistant", "content": answer})
 
-elif menu == 'Chatbot':
-    if st.button("Reset Chat"):
-        st.session_state.messages = []
-
-    if "messages" not in st.session_state:
-        st.session_state.messages = []
-
-    for message in st.session_state.messages:
-        with st.chat_message(message["role"]):
-            st.markdown(message["content"])
-
-    if q := st.chat_input("Ask Question Here ..."):
-        st.session_state.messages.append({"role": "user", "content": q})
-        with st.chat_message("user"):
-            st.markdown(q)
-
-
-        with st.chat_message("assistant"):
-            with st.spinner("Generating Answer..."):        
-                response = rag_qa(q)
-            answer = response['choices'][0]['message']['content']
-            st.markdown(answer)
-
-        st.session_state.messages.append({"role": "assistant", "content": answer})
+if __name__ == "__main__":
+    main()
